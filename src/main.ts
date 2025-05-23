@@ -1,4 +1,4 @@
-import { addTask } from "./commands.js";
+import { addTask, listTasks } from "./commands.js";
 
 /**
  * Command will look something like this:
@@ -19,6 +19,10 @@ switch (command) {
     case "add":
         addTask(args.slice(1).join(" "));
         break;
+    case "list":
+        listTasks();
+        break;
     default:
-        console.error('Unknown command.');
+        listTasks();
+        break;
 }

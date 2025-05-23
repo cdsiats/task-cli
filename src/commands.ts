@@ -38,7 +38,17 @@ export function deleteTask() {
 }
 
 export function listTasks() {
-
+    let tasks: Task[] = [];
+    if (fs.existsSync(FILE_PATH)) {
+        tasks = JSON.parse(fs.readFileSync(FILE_PATH, 'utf-8'));
+    }
+    if (tasks.length === 0) {
+        console.info('You have no tasks.');
+        return;
+    }
+    tasks.forEach(task => {
+        console.info(`${task.id} "${task.description}" - ${task.status}`);
+    });
 }
 
 export function listCompletedTasks() {
