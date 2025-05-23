@@ -1,4 +1,4 @@
-import { addTask, listTasks } from "./commands.js";
+import { addTask, listCompletedTasks, listTasks } from "./commands.js";
 
 /**
  * Command will look something like this:
@@ -21,6 +21,9 @@ switch (command) {
         break;
     case "list":
         listTasks();
+        break;
+    case "done":
+        listCompletedTasks();
         break;
     default:
         listTasks();
