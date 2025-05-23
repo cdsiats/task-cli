@@ -5,7 +5,7 @@ const FILE_PATH = 'tasks.json';
 
 export function addTask(task: string) {
     if (!task) {
-        console.error('Task description is required,');
+        console.error('Task description is required.');
         return;
     }
     
