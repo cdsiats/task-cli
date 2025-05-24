@@ -33,8 +33,32 @@ export function updateTask() {
 
 }
 
-export function deleteTask() {
+export function deleteTask(id: number) {
+    if (!id) {
+        console.error('Task ID is required.');
+        return;
+    }
+    if (typeof id !== 'number' || id <= 0) {
+        console.error('Invalid task ID.');
+        return;
+    }
+    let tasks: Task[] = [];
 
+    if (!fs.existsSync(FILE_PATH)) {
+        console.error('No tasks found.');
+        return;
+    }
+
+    tasks = JSON.parse(fs.readFileSync(FILE_PATH, 'utf-8'));
+
+    const taskToDelete = tasks.find(task => task.id === id);
+    if (!taskToDelete) {
+        console.error(`Task with ID ${id} not found.`);
+        return;
+    }
+    tasks = tasks.filter(task => task.id !== id);
+    fs.writeFileSync(FILE_PATH, JSON.stringify(tasks, null, 2), 'utf-8');
+    console.info(`Task with ID ${id} deleted.`);
 }
 
 export function listTasks() {

@@ -1,4 +1,10 @@
-import { addTask, listCompletedTasks, listPendingTasks, listTasks } from "./commands.js";
+import { 
+    addTask, 
+    deleteTask, 
+    listCompletedTasks, 
+    listPendingTasks, 
+    listTasks 
+    } from "./commands.js";
 
 /**
  * Command will look something like this:
@@ -29,6 +35,10 @@ switch (command) {
         break;
     case "pending":
         listPendingTasks();
+        break;
+    case "delete":
+        const id = Number(args[1]);
+        deleteTask(id);
         break;
     default:
         listTasks();
