@@ -10,12 +10,15 @@ export function addTask(task: string) {
     }
     
     let tasks: Task[] = [];
-    if (fs.existsSync(FILE_PATH)) {
-        tasks = JSON.parse(fs.readFileSync(FILE_PATH, 'utf-8'));
+    if (!fs.existsSync(FILE_PATH)) {
+        console.error('No tasks found. Creating a new task file.');
     }
 
+    tasks = JSON.parse(fs.readFileSync(FILE_PATH, 'utf-8'));
+    const highestId = tasks.length > 0 ? Math.max(...tasks.map(t => t.id)) : 0;
+
     const newTask: Task = {
-        id: tasks.length + 1,
+        id: highestId + 1,
         description: task,
         status: 'pending',
         createdAt: new Date().toISOString(),
