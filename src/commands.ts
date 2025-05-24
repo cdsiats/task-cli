@@ -67,7 +67,19 @@ export function listCompletedTasks() {
 }
 
 export function listPendingTasks() {
-
+    let tasks: Task[] = [];
+    if (fs.existsSync(FILE_PATH)) {
+        tasks = JSON.parse(fs.readFileSync(FILE_PATH, 'utf-8'));
+    }
+    if (tasks.length === 0) {
+        console.info('You have no tasks.');
+        return;
+    }
+    
+    tasks.filter(task => task.status === 'pending')
+        .forEach(task => {
+            console.info(`${task.id} "${task.description}" - ${task.status}`);
+        });
 }
 
 export function completeTask() {

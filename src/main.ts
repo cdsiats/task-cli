@@ -1,4 +1,4 @@
-import { addTask, listCompletedTasks, listTasks } from "./commands.js";
+import { addTask, listCompletedTasks, listPendingTasks, listTasks } from "./commands.js";
 
 /**
  * Command will look something like this:
@@ -11,6 +11,8 @@ import { addTask, listCompletedTasks, listTasks } from "./commands.js";
  *  'add', [2]
  *  'New Item', [3]
  * ]
+ * 
+ * .slice(2) means to skip the first two elements
  */
 const args = process.argv.slice(2);
 const command = args[0];
@@ -24,6 +26,9 @@ switch (command) {
         break;
     case "done":
         listCompletedTasks();
+        break;
+    case "pending":
+        listPendingTasks();
         break;
     default:
         listTasks();
