@@ -5,7 +5,7 @@ knowledge. It's a CLI app that helps track and manage tasks.
 # Features
 - [x] Add tasks
 - [ ] Update tasks
-- [ ] Delete tasks
+- [x] Delete tasks
 - [x] List all tasks
 - [x] List all done tasks
 - [x] List all tasks that are in progress
