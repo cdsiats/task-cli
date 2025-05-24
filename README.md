@@ -8,8 +8,7 @@ knowledge. It's a CLI app that helps track and manage tasks.
 [] Delete tasks
 [x] List all tasks
 [x] List all done tasks
-[] List all tasks that are not done
-[] List all tasks that are in progress
+[x] List all tasks that are in progress
 
 # Project Constraints
 - Use a JSON file to store tasks in the same directory
