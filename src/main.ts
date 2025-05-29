@@ -1,5 +1,6 @@
 import { 
     addTask, 
+    completeTask, 
     deleteTask, 
     listCompletedTasks, 
     listPendingTasks, 
@@ -39,6 +40,10 @@ switch (command) {
     case "delete":
         const id = Number(args[1]);
         deleteTask(id);
+        break;
+    case "complete":
+        const taskId = Number(args[1]);
+        completeTask(taskId);
         break;
     default:
         listTasks();

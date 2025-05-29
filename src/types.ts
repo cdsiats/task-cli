@@ -1,7 +1,13 @@
+export enum TaskStatus {
+    TODO = 'todo',
+    PENDING = 'pending',
+    DONE = 'done',
+}
+
 export type Task = {
     id: number;
     description: string;
-    status: 'todo' | 'pending' | 'done';
+    status: TaskStatus;
     createdAt: string;
     updatedAt: string;
 }
