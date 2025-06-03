@@ -45,6 +45,9 @@ switch (command) {
         const taskId = Number(args[1]);
         completeTask(taskId);
         break;
+    case "update":
+        const taskIdToUpdate = Number(args[1]);
+        const newTaskDescription = args.slice(2).join(" ");
     default:
         listTasks();
         break;

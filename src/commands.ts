@@ -32,8 +32,31 @@ export function addTask(task: string) {
     console.info(`Task added: ${task}`);
 }
 
-export function updateTask() {
+export function updateTask(id: number, newTask: string) {
+    if (!id) {
+        console.error('Task ID is required.');
+        return;
+    }
 
+    if (typeof id !== 'number' || id <= 0) {
+        console.error('Invalid task ID.');
+        return;
+    }
+    let tasks: Task[] = [];
+    if (!fs.existsSync(FILE_PATH)) {
+        console.error('No tasks found. Creating a new task file.');
+    }
+    tasks = JSON.parse(fs.readFileSync(FILE_PATH, 'utf-8'));
+    const taskToUpdate = tasks.find(task => task.id === id);
+    if (!taskToUpdate) {
+        console.error(`Task with ID ${id} not found.`);
+        return;
+    }
+    taskToUpdate.description = newTask;
+    taskToUpdate.updatedAt = new Date().toISOString();
+    fs.writeFileSync(FILE_PATH, JSON.stringify(tasks, null, 2), 'utf-8');
+    console.info(`Task with ID ${id} updated to: ${newTask}`);
+    
 }
 
 export function deleteTask(id: number) {
